@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tasks - Task Manager</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>Task Manager</h1>
+</header>
+<nav>
+    <a href="/">Home</a>
+    <a href="/tasks">View Tasks</a>
+    <a href="/add-task">Add Task</a>
+</nav>
+<div class="container">
+    <h2>Tasks</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="task : ${tasks}" th:class="${task.completed ? 'completed' : ''}">
+            <td th:text="${task.id}">ID</td>
+            <td th:text="${task.name}">Name</td>
+            <td th:text="${task.description}">Description</td>
+            <td>
+                <img th:if="${task.imageUrl}" th:src="${task.imageUrl}" alt="Task image" style="max-width: 100px; max-height: 100px;">
+                <span th:unless="${task.imageUrl}">No image</span>
+            </td>
+            <td th:text="${task.completed ? 'Completed' : 'Pending'}">Status</td>
+            <td>
+                <form th:if="${!task.completed}" th:action="@{/complete-task/{id}(id=${task.id})}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-success">Complete</button>
+                </form>
+                <form th:if="${task.completed}" th:action="@{/delete-task/{id}(id=${task.id})}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <a href="/add-task" class="btn">Add Task</a>
+</div>
+</body>
+</html>

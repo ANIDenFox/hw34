@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home - Task Manager</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>Task Manager</h1>
+</header>
+<nav>
+    <a href="/">Home</a>
+    <a href="/tasks">View Tasks</a>
+    <a href="/add-task">Add Task</a>
+</nav>
+<div class="container">
+    <h2>Welcome to Task Manager</h2>
+    <p>Manage your tasks efficiently with our easy-to-use application.</p>
+    <a href="/tasks" class="btn">View Tasks</a>
+    <a href="/add-task" class="btn">Add Task</a>
+</div>
+</body>
+</html>
